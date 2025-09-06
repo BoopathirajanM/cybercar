@@ -6,8 +6,8 @@ public class App {
         int boardHeight = 640;
 
         JFrame frame = new JFrame("Cyber Car Flying");
-        //frame.setVisible(true);
-        frame.setSize(boardWidth,boardHeight);
+        //frame.setVisible(true);  
+        frame.setSize(boardWidth,boardHeight);    
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,8 +15,10 @@ public class App {
         //instance
         CyberCar cyberCar = new CyberCar();
         frame.add(cyberCar);
-        frame.pack();
-        cyberCar.requestFocus();
+
         frame.setVisible(true);
+        frame.pack();
+
+        cyberCar.requestFocus();
     }
 }
