@@ -7,7 +7,7 @@ Welcome to **CyberCar**, a nostalgic arcade game built entirely in Java. This pr
 ## 🎮 Gameplay
 The objective is simple: **maneuver your flying car and avoid the pipes**. Press the **spacebar** to make the car fly up. The game gets progressively more challenging as the gaps between pipes become more difficult to pass. Your score increases for every set of pipes you successfully navigate.
 
-`CyberCarFlyingVideo.mp4`
+[`CyberCarFlyingVideo.mp4`](https://github.com/user-attachments/assets/580dfedd-47a1-4cf6-b591-6e77678af885)
 ---
 
 ## 💻 Tech Stack
