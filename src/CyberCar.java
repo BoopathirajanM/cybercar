@@ -1,10 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
@@ -88,12 +86,12 @@ public class CyberCar extends JPanel implements ActionListener, KeyListener {
         addKeyListener(this);
 
         // load images
-        backgroundImg = new ImageIcon(getClass().getResource("./background.png")).getImage();
-        carImg = new ImageIcon(getClass().getResource("./flyingcar.png")).getImage();
-        topPipeImg = new ImageIcon(getClass().getResource("./toppipe.png")).getImage();
-        bottomPipeImg = new ImageIcon(getClass().getResource("./bottompipe.png")).getImage();
-        gamestartImg = new ImageIcon(getClass().getResource("./gamestart.png")).getImage();
-        gameoverImg = new ImageIcon(getClass().getResource("./gameover.png")).getImage();
+        backgroundImg = new ImageIcon(getClass().getResource("background.png")).getImage();
+        carImg = new ImageIcon(getClass().getResource("flyingcar.png")).getImage();
+        topPipeImg = new ImageIcon(getClass().getResource("toppipe.png")).getImage();
+        bottomPipeImg = new ImageIcon(getClass().getResource("bottompipe.png")).getImage();
+        gamestartImg = new ImageIcon(getClass().getResource("gamestart.png")).getImage();
+        gameoverImg = new ImageIcon(getClass().getResource("gameover.png")).getImage();
 
         // car
         car = new Car(carImg);
@@ -118,29 +116,29 @@ public class CyberCar extends JPanel implements ActionListener, KeyListener {
 
     
     // New method to handle playing a sound file
-    private void playMusic() {
-        try {
-            File musicPath = new File("./BujjiTheme.wav");
-            if (musicPath.exists()) {
-                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-                
-                // If a clip already exists, stop and close it before creating a new one
-                if (musicClip != null) {
-                    musicClip.stop();
-                    musicClip.close();
-                }
+private void playMusic() {
+    try {
+        // Load from JAR resources
+        var audioStream = AudioSystem.getAudioInputStream(
+            getClass().getResource("BujjiTheme.wav")
+        );
 
-                musicClip = AudioSystem.getClip();
-                musicClip.open(audioInput);
-                musicClip.start();
-                musicClip.loop(Clip.LOOP_CONTINUOUSLY); // Loop the music indefinitely
-            } else {
-                System.out.println("Can't find the audio file: ./game_music.wav");
-            }
-        } catch (UnsupportedAudioFileException | LineUnavailableException | java.io.IOException e) {
-            e.printStackTrace();
+        if (musicClip != null) {
+            musicClip.stop();
+            musicClip.close();
         }
+
+        musicClip = AudioSystem.getClip();
+        musicClip.open(audioStream);
+        musicClip.start();
+        musicClip.loop(Clip.LOOP_CONTINUOUSLY);
+
+    } catch (UnsupportedAudioFileException | LineUnavailableException | java.io.IOException e) {
+        e.printStackTrace();
+        System.out.println("Can't load audio: BujjiTheme.wav");
     }
+}
+
 
     public void placePipes() {
 
